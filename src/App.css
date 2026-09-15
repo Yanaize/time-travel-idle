@@ -1,0 +1,324 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.45;
+  font-weight: 400;
+  color: #1a1a1a;
+  background: #f4f4f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #e8e8ea;
+    background: #121214;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.game-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.flavor {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .flavor {
+    color: #a0a0a8;
+  }
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel {
+    background: #1c1c20;
+    border-color: #2e2e34;
+  }
+}
+
+.panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .panel h2 {
+    color: #9898a0;
+  }
+}
+
+.resource-panel {
+  padding: 1.1rem 1rem;
+}
+
+.resource {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.resource-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.resource-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #222;
+  border-radius: 0.4rem;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover:not(:disabled) {
+  background: #333;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  width: auto;
+  flex-shrink: 0;
+  background: transparent;
+  color: inherit;
+  border-color: #888;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn {
+    background: #e8e8ea;
+    color: #121214;
+    border-color: #e8e8ea;
+  }
+
+  .btn:hover:not(:disabled) {
+    background: #fff;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #e8e8ea;
+    border-color: #666;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background: #2a2a30;
+  }
+}
+
+.bar {
+  margin-top: 0.65rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #e4e4e7;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bar {
+    background: #2e2e34;
+  }
+}
+
+.bar-fill {
+  height: 100%;
+  background: #222;
+  border-radius: inherit;
+  transition: width 50ms linear;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bar-fill {
+    background: #c8c8d0;
+  }
+}
+
+.meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .meta {
+    color: #9898a0;
+  }
+}
+
+.feedback {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.feedback-fail {
+  color: #a33;
+}
+
+.feedback-crit {
+  color: #2a7;
+  font-weight: 600;
+}
+
+.feedback-success {
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feedback-fail {
+    color: #f88;
+  }
+
+  .feedback-crit {
+    color: #6d6;
+  }
+
+  .feedback-success {
+    color: #9898a0;
+  }
+}
+
+.upgrade-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.upgrade-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.upgrade-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.upgrade-desc {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .upgrade-desc {
+    color: #9898a0;
+  }
+}
+
+.upgrade-empty {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.owned-details {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.owned-details ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.link-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  opacity: 0.8;
+}
