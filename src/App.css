@@ -123,6 +123,33 @@ button {
   letter-spacing: -0.02em;
 }
 
+.resource-sub {
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .resource-sub {
+    color: #9898a0;
+  }
+}
+
+.subhead {
+  margin: 0.85rem 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .subhead {
+    color: #9898a0;
+  }
+}
+
 .btn {
   display: block;
   width: 100%;
@@ -284,9 +311,26 @@ button {
   }
 }
 
-.upgrade-empty {
-  font-size: 0.9rem;
-  color: #666;
+.reading-active {
+  margin: 0.5rem 0 0.85rem;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 0.4rem;
+}
+
+.reading-active strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.reading-active .upgrade-desc {
+  margin: 0 0 0.35rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .reading-active {
+    border-color: #2e2e34;
+  }
 }
 
 .owned-details {

@@ -9,11 +9,14 @@ export default function App() {
     <div className="app">
       <GameScreen
         state={game.state}
-        onLearn={game.startLearn}
+        onStudy={game.startStudy}
         onBuyUpgrade={game.buyUpgrade}
+        onBuyBook={game.buyBook}
+        onStartReading={game.startReading}
+        onBuyRepeatable={game.buyRepeatable}
       />
       <footer className="app-footer">
-        <span>Version 0.0.1 — Stage 1</span>
+        <span>Version 0.0.2 — Stage 1</span>
         <button type="button" className="link-btn" onClick={game.reset}>
           Reset
         </button>

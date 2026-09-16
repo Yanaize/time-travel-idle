@@ -1,15 +1,16 @@
 # Time Travel Idle
 
-Browser-based incremental game about learning enough to build a time machine.
+Browser-based incremental game about studying enough to build a time machine.
 
-## Version 0.0.1
+## Version 0.0.2
 
-Stage 1 start (from `docs/game-design.md`):
+Stage 1 (from `docs/game-design-2026-09-16.md`):
 
-- Timed **Learn** action with failure chance
-- **Knowledge** resource
-- Knowledge upgrades **#1–#10**
-- **The Library** unlock stub (books not implemented yet)
+- Timed **Study** action with failure / critical chance
+- **Knowledge** upgrades #1–#18 (TBD #19–#25 omitted)
+- **The Library** with designed books and page reading
+- **Streaks** (upgrade #18)
+- **Repeatable upgrades** (after completing Practice Makes Perfect)
 
 ## Stack
 

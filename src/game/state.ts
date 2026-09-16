@@ -1,29 +1,62 @@
 import type { GameNumber } from "./numbers";
 
+export interface BookProgress {
+  owned: boolean;
+  pagesRead: number;
+  completed: boolean;
+}
+
 export interface GameState {
   knowledge: GameNumber;
-  learnProgressMs: number;
-  isLearning: boolean;
-  /** Owned one-time Knowledge upgrade ids. */
+  studyProgressMs: number;
+  isStudying: boolean;
   ownedUpgradeIds: string[];
   libraryUnlocked: boolean;
-  /** Result of the last completed Learn attempt (for UI feedback). */
-  lastLearnResult: "success" | "fail" | "crit" | null;
+  streaksUnlocked: boolean;
+  repeatablesUnlocked: boolean;
+  lastStudyResult: "success" | "fail" | "crit" | null;
+  books: Record<string, BookProgress>;
+  /** Book currently being read, if any. */
+  readingBookId: string | null;
+  readProgressMs: number;
+  repeatableLevels: Record<string, number>;
+  currentStreak: number;
+  bestStreak: number;
   lastTickAt: number;
+}
+
+export function emptyBookProgress(): BookProgress {
+  return { owned: false, pagesRead: 0, completed: false };
 }
 
 export function createInitialState(now = Date.now()): GameState {
   return {
     knowledge: 0,
-    learnProgressMs: 0,
-    isLearning: false,
+    studyProgressMs: 0,
+    isStudying: false,
     ownedUpgradeIds: [],
     libraryUnlocked: false,
-    lastLearnResult: null,
+    streaksUnlocked: false,
+    repeatablesUnlocked: false,
+    lastStudyResult: null,
+    books: {},
+    readingBookId: null,
+    readProgressMs: 0,
+    repeatableLevels: {},
+    currentStreak: 0,
+    bestStreak: 0,
     lastTickAt: now,
   };
 }
 
 export function ownsUpgrade(state: GameState, id: string): boolean {
   return state.ownedUpgradeIds.includes(id);
+}
+
+export function getBookProgress(state: GameState, bookId: string): BookProgress {
+  return state.books[bookId] ?? emptyBookProgress();
+}
+
+export function repeatableLevel(state: GameState, id: string): number {
+  return state.repeatableLevels[id] ?? 0;
 }
