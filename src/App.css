@@ -52,6 +52,55 @@ button {
   flex: 1;
 }
 
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tab-nav {
+  display: flex;
+  gap: 0.35rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tab-nav {
+    border-bottom-color: #333;
+  }
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: inherit;
+}
+
+.tab-btn-active {
+  color: inherit;
+  font-weight: 600;
+  border-bottom-color: currentColor;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tab-btn {
+    color: #9898a0;
+  }
+
+  .tab-btn-active {
+    color: #e8e8ea;
+  }
+}
+
 .game-header h1 {
   margin: 0 0 0.35rem;
   font-size: 1.5rem;
@@ -303,6 +352,13 @@ button {
 .upgrade-desc {
   font-size: 0.85rem;
   color: #666;
+}
+
+.upgrade-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex-shrink: 0;
 }
 
 @media (prefers-color-scheme: dark) {

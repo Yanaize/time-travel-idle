@@ -2,21 +2,17 @@
 
 Browser-based incremental game about studying enough to build a time machine.
 
-## Version 0.0.2
+## Version 0.0.3
 
-Stage 1 (from `docs/game-design-2026-09-16.md`):
+Stage 1 feature-complete through the **Mathematics** unlock
+(`docs/game-design-v0.0.3.md`).
 
-- Timed **Study** action with failure / critical chance
-- **Knowledge** upgrades #1–#18 (TBD #19–#25 omitted)
-- **The Library** with designed books and page reading
-- **Streaks** (upgrade #18)
-- **Repeatable upgrades** (after completing Practice Makes Perfect)
+Tabs: Study → Library → Research → Subjects (as unlocked).
 
-## Stack
+## Balancing
 
-- React + TypeScript + Vite
-- Client-side only
-- Game logic in `src/game/`, UI in `src/ui/`
+Edit numbers in [`src/game/balance.ts`](src/game/balance.ts). Content and
+formulas read from there.
 
 ## Scripts
 

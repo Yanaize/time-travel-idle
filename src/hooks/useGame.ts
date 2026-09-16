@@ -2,10 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import {
   buyBook,
   buyRepeatable,
+  buyResearch,
   buyUpgrade,
   resetGame,
   startReading,
   startStudy,
+  togglePinBook,
 } from "../game/actions";
 import { createInitialState, type GameState } from "../game/state";
 import { tick } from "../game/tick";
@@ -34,6 +36,8 @@ export function useGame() {
     buyBook: (id: string) => wrap((s) => buyBook(s, id)),
     startReading: (id: string) => wrap((s) => startReading(s, id)),
     buyRepeatable: (id: string) => wrap((s) => buyRepeatable(s, id)),
+    buyResearch: (id: string) => wrap((s) => buyResearch(s, id)),
+    togglePin: (id: string) => wrap((s) => togglePinBook(s, id)),
     reset: () => setState(resetGame()),
   };
 }

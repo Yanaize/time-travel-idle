@@ -6,7 +6,7 @@ import {
   resolveStudyOutcome,
   studyDurationMs,
 } from "./formulas";
-import { getBookProgress, type GameState } from "./state";
+import { getBookProgress, type GameState, type ReadingSession } from "./state";
 
 const MAX_DT_MS = 1000;
 
@@ -42,38 +42,41 @@ function tickStudy(state: GameState, dtMs: number): GameState {
 }
 
 function tickReading(state: GameState, dtMs: number): GameState {
-  if (!state.readingBookId) return state;
+  if (state.readingSessions.length === 0) return state;
 
   const duration = readDurationMs(state);
-  const progress = state.readProgressMs + dtMs;
-  if (progress < duration) {
-    return { ...state, readProgressMs: progress };
+  let next = state;
+  const continuing: ReadingSession[] = [];
+
+  for (const session of state.readingSessions) {
+    const progress = session.progressMs + dtMs;
+    if (progress < duration) {
+      continuing.push({ bookId: session.bookId, progressMs: progress });
+    } else {
+      next = applyPageCompletion(next, session.bookId, 1);
+    }
   }
 
-  return completePages(state, 1);
+  return { ...next, readingSessions: continuing };
 }
 
-/** Finish at least one page; Critical Reader may finish an extra page. */
-function completePages(state: GameState, pages: number, random = Math.random): GameState {
-  const bookId = state.readingBookId;
-  if (!bookId) return state;
+/** Apply finished page(s); does not manage readingSessions. */
+function applyPageCompletion(
+  state: GameState,
+  bookId: string,
+  pages: number,
+  random = Math.random,
+): GameState {
   const def = getBook(bookId);
-  if (!def) {
-    return { ...state, readingBookId: null, readProgressMs: 0 };
-  }
+  if (!def) return state;
 
   let progress = getBookProgress(state, bookId);
   let pagesToApply = pages;
-  const critChance = critReadChance(state);
-  if (critChance > 0 && random() < critChance) {
+  if (critReadChance(state) > 0 && random() < critReadChance(state)) {
     pagesToApply += 1;
   }
 
-  let next: GameState = {
-    ...state,
-    books: { ...state.books },
-    readProgressMs: 0,
-  };
+  let next: GameState = { ...state, books: { ...state.books } };
 
   for (let i = 0; i < pagesToApply; i++) {
     if (progress.completed) break;
@@ -84,14 +87,15 @@ function completePages(state: GameState, pages: number, random = Math.random): G
       if (def.completionBonus.kind === "unlockRepeatables") {
         next = { ...next, repeatablesUnlocked: true };
       }
+      next = {
+        ...next,
+        pinnedBookIds: next.pinnedBookIds.filter((id) => id !== bookId),
+      };
     }
   }
 
-  // Always stop after this page action — player must start the next page manually.
   return {
     ...next,
     books: { ...next.books, [bookId]: progress },
-    readingBookId: null,
-    readProgressMs: 0,
   };
 }
